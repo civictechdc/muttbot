@@ -14,5 +14,9 @@
     "oblique.coffee",
     "pokefacts.coffee",
     "scotch.coffee",
-    "weather.coffee"
+    "weather.coffee",
+    "poem.coffee",
+    "chess.coffee",
+    "flip.coffee",
+    "git-help.coffee"
 ]
