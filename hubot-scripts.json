@@ -1,1 +1,22 @@
-[]
+[
+    "redis-brain.coffee",
+    "shipit.coffee",
+    "abstract.coffee",
+    "ambush.coffee",
+    "applause.coffee",
+    "bees.coffee",
+    "chat.coffee",
+    "countdown.coffee",
+    "deadline.coffee",
+    "dealwithit.coffee",
+    "dnsimple.coffee",
+    "haters.coffee",
+    "oblique.coffee",
+    "pokefacts.coffee",
+    "scotch.coffee",
+    "weather.coffee",
+    "poem.coffee",
+    "chess.coffee",
+    "flip.coffee",
+    "git-help.coffee"
+]
