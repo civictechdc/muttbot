@@ -10,6 +10,10 @@ attempts = [
     "It makes a lot of sense to me",
     "I...don't really know",
     "I think it's pretty clear",
+    "It's perfect!",
+    "We're all having a pretty good time here",
+    "I'm drunk",
+    "Oh, oops",
     "No",
     "https://i.imgur.com/5foan.gif",
     "I will not",
@@ -18,4 +22,4 @@ attempts = [
 
 module.exports = (robot) ->
   robot.respond /.*explain (yourself|this)\?*/i, (msg) ->
-    msg.reply msg.random attempts
+    msg.send msg.random attempts
