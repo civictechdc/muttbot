@@ -26,7 +26,8 @@
     "hubot-slack": "^2.1.1",
     "chess": "0.2.1",
     "flip": "0.1.1",
-    "jsdom": "1.0.0-pre.3"
+    "jsdom": "1.0.0-pre.3",
+    "hubot-appearin": ">= 1.0.0"
   },
   "engines": {
     "node": ">= 0.8.x",
