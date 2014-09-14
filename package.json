@@ -21,13 +21,17 @@
     "url": "https://github.com/github/hubot.git"
   },
   "dependencies": {
-    "hubot": ">= 2.6.0 < 3.0.0",
-    "hubot-scripts": ">= 2.5.0 < 3.0.0",
-    "hubot-slack": "^2.1.1",
     "chess": "0.2.1",
     "flip": "0.1.1",
-    "jsdom": "1.0.0-pre.3",
-    "hubot-appearin": ">= 1.0.0"
+    "hubot": ">= 2.6.0 < 3.0.0",
+    "hubot-appearin": ">= 1.0.0",
+    "hubot-calculator": ">= 0.3.0",
+    "hubot-darksky": "^1.0.1",
+    "hubot-plusplus": "1.0.x",
+    "hubot-reaction": "0.0.6",
+    "hubot-scripts": ">= 2.5.0 < 3.0.0",
+    "hubot-slack": "^2.1.1",
+    "jsdom": "1.0.0-pre.3"
   },
   "engines": {
     "node": ">= 0.8.x",
