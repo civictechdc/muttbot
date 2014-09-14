@@ -16,5 +16,7 @@
     "poem.coffee",
     "chess.coffee",
     "flip.coffee",
-    "git-help.coffee"
+    "git-help.coffee",
+    "eight-ball.coffee",
+    "decide.coffee"
 ]
