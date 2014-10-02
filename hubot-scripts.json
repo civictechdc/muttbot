@@ -2,7 +2,6 @@
     "redis-brain.coffee",
     "shipit.coffee",
     "abstract.coffee",
-    "ambush.coffee",
     "applause.coffee",
     "chat.coffee",
     "countdown.coffee",
