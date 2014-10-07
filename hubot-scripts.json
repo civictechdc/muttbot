@@ -9,12 +9,11 @@
     "dealwithit.coffee",
     "haters.coffee",
     "oblique.coffee",
-    "pokefacts.coffee",
     "scotch.coffee",
-    "poem.coffee",
     "chess.coffee",
     "flip.coffee",
     "git-help.coffee",
     "eight-ball.coffee",
-    "decide.coffee"
+    "decide.coffee",
+    "cowsay.coffee"
 ]

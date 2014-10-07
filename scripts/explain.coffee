@@ -1,10 +1,18 @@
 # Description:
 #   Sometimes a hubot needs to explain itself
 #
+# Dependencies:
+#   None
+#
+# Configuration:
+#   None
+#
 # Commands:
 #   hubot explain yourself - Request an explanation
 #
-
+# Author:
+#   stvnrlly
+#
 attempts = [
     "Seemed like a good idea",
     "It makes a lot of sense to me",

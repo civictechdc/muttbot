@@ -1,10 +1,18 @@
 # Description:
 #   Helpful hints
 #
+# Dependencies:
+#   None
+#
+# Configuration:
+#   None
+#
 # Commands:
 #   hubot hint - get a hint that may be helpful
 #
-
+# Author:
+#   stvnrlly
+#
 hints = [
     "Keep several microfiber cloths underneath the front seat of your vehicle. Use them to dust off the dashboard, radio and steering wheel.",
     "Pet hair, dust, ashes from smoking can migrate into your computer and clog the open holes. Use the hose attachment of your vacuum to remove pet hair and dust from the back of your computer. Clean the monitor case with a slightly damp microfiber cloth. Be sure to also dust the power cords, floor and area around the computer, printer and fax machine too.",
