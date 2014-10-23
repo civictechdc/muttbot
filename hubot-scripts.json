@@ -15,5 +15,7 @@
     "git-help.coffee",
     "eight-ball.coffee",
     "decide.coffee",
-    "cowsay.coffee"
+    "cowsay.coffee",
+    "wordnik.coffee",
+    "wikipedia.coffee"
 ]

@@ -21,8 +21,10 @@
     "url": "https://github.com/github/hubot.git"
   },
   "dependencies": {
+    "cheerio": "0.17.0",
     "chess": "0.2.1",
     "flip": "0.1.1",
+    "htmlparser": "^1.7.7",
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-alias": "^0.1.6",
     "hubot-appearin": ">= 1.0.0",
@@ -34,9 +36,11 @@
     "hubot-reaction": "0.0.6",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-slack": "^2.1.1",
-    "node-geocoder": "2.9.1",
     "jsdom": "1.0.0-pre.3",
-    "cheerio": "0.17.0"
+    "node-geocoder": "2.9.1",
+    "soupselect": "^0.2.0",
+    "underscore": "^1.7.0",
+    "underscore.string": "^2.3.3"
   },
   "engines": {
     "node": ">= 0.8.x",
