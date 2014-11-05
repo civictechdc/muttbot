@@ -18,7 +18,7 @@
 cheerio = require("cheerio")
 
 module.exports = (robot) ->
-    robot.respond /space( me)?/i, (msg) ->
+    robot.respond /space( me| out)?/i, (msg) ->
         start = new Date('06/16/1995')
         today = new Date()
         date = new Date(start.getTime() + Math.random() * (today.getTime() - start.getTime()))
