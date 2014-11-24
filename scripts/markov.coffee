@@ -69,7 +69,7 @@ module.exports = (robot) ->
     model.learn msg.message.text
 
     # Chance to randomly respond un-prompted
-    if msg.message.room in process.env.HUBOT_WHITELIST
+    if (process.env.HUBOT_WHITELIST) && (msg.message.room in process.env.HUBOT_WHITELIST)
         if pct > 0 and Math.random() < pct
           seed = msg.message.text.match /\w+$/
           model.generate seed[0] or '', max, (text) =>
