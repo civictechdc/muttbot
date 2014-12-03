@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot explain yourself - Request an explanation
+#   hubot explain yourself - Request an explanation for what just happened
 #
 # Author:
 #   stvnrlly
@@ -18,8 +18,8 @@ attempts = [
     "It makes a lot of sense to me",
     "I...don't really know",
     "I think it's pretty clear",
-    "It's perfect!",
     "We're all having a pretty good time here",
+    "Haha",
     "I'm drunk",
     "Oh, oops",
     "No",

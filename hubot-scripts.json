@@ -1,11 +1,8 @@
 [
     "redis-brain.coffee",
-    "shipit.coffee",
     "abstract.coffee",
     "applause.coffee",
     "chat.coffee",
-    "countdown.coffee",
-    "deadline.coffee",
     "dealwithit.coffee",
     "haters.coffee",
     "oblique.coffee",
