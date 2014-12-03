@@ -1,5 +1,5 @@
 # Description:
-#   Bees are insane
+#   ¯\_(ツ)_/¯
 #
 # Dependencies:
 #   None
@@ -8,12 +8,10 @@
 #   None
 #
 # Commands:
-#   bees - Bees?
+#   what's the deal - What is the DEAL
 #
 # Author:
-#   atmos
-#   forked from https://github.com/github/hubot-scripts/blob/master/src/scripts/bees.coffee to add extra fun
-
+#   stvnrlly
 module.exports = (robot) ->
   robot.hear /what's\sthe\sdeal\b/i, (message) ->
     probability = Math.random()
