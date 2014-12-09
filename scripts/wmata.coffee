@@ -153,7 +153,7 @@ module.exports = (robot) ->
             search = msg.match[3]
             # Bus incident search by route name
             if search.match /^(\d\d|\w\d)$/i
-                msg.http("http://api.wmata.com/Incidents.svc/json/BusIncidents?Route=#{search}&api_key=#{key}")
+                msg.http("http://api.wmata.com/Incidents.svc/json/BusIncidents?Route=#{search}&api_key=#{key}&subscription_key=#{key}")
                 .get() (err, resp, body) ->
                     arr = []
                     results = JSON.parse body
@@ -166,7 +166,7 @@ module.exports = (robot) ->
 
             # Bus arrivals by 7-digit stop ID
             else if search.match /^\d{7}$/i
-                msg.http("http://api.wmata.com/NextBusService.svc/json/jPredictions?StopID=#{search}&api_key=#{key}")
+                msg.http("http://api.wmata.com/NextBusService.svc/json/jPredictions?StopID=#{search}&api_key=#{key}&subscription_key=#{key}")
                 .get() (err, resp, body) ->
                     arr = []
                     results = JSON.parse body
@@ -181,7 +181,7 @@ module.exports = (robot) ->
             else if search.match /^\d+\s.+\s(nw|ne|sw|se)/i
                 results = geocoder.geocode "#{search} washington, dc", (err, resp) ->
                     arr = "Here's what's nearby:\n\n"
-                    msg.http("http://api.wmata.com/rail.svc/json/jStationEntrances?lat=#{resp[0].latitude}&lon=#{resp[0].longitude}&radius=200&api_key=#{key}")
+                    msg.http("http://api.wmata.com/rail.svc/json/jStationEntrances?lat=#{resp[0].latitude}&lon=#{resp[0].longitude}&radius=200&api_key=#{key}&subscription_key=#{key}")
                     .get() (err, res, body) ->
                         results = JSON.parse body
                         if results.Entrances.length > 0
@@ -189,12 +189,12 @@ module.exports = (robot) ->
                             s = []
                         for i in results.Entrances
                             if i.StationCode1 not in s
-                                msg.http("http://api.wmata.com/Rail.svc/json/jStationInfo?StationCode=#{i.StationCode1}&api_key=#{key}")
+                                msg.http("http://api.wmata.com/Rail.svc/json/jStationInfo?StationCode=#{i.StationCode1}&api_key=#{key}&subscription_key=#{key}")
                                 .get() (err, resp, body) ->
                                     results = JSON.parse body
                                     arr += "#{results.Name}\n"
                                 s.push i.StationCode1
-                        msg.http("http://api.wmata.com/Bus.svc/json/jStops?lat=#{resp[0].latitude}&lon=#{resp[0].longitude}&radius=200&api_key=#{key}")
+                        msg.http("http://api.wmata.com/Bus.svc/json/jStops?lat=#{resp[0].latitude}&lon=#{resp[0].longitude}&radius=200&api_key=#{key}&subscription_key=#{key}")
                         .get() (err, res, body) ->
                             results = JSON.parse body
                             if results.Stops.length > 0
@@ -213,7 +213,7 @@ module.exports = (robot) ->
                     "orange": "OR;"
                     "yellow": "YL;"
                     "silver": "SV;"
-                msg.http("http://api.wmata.com/Incidents.svc/json/Incidents?api_key=#{key}")
+                msg.http("http://api.wmata.com/Incidents.svc/json/Incidents?api_key=#{key}&subscription_key=#{key}")
                 .get() (err, resp, body) ->
                     results = JSON.parse body
                     for i in results.Incidents
@@ -227,12 +227,12 @@ module.exports = (robot) ->
             else if search.match station_regex
                 station = search.match station_regex
                 arr = ""
-                msg.http("http://api.wmata.com/Rail.svc/json/jStationInfo?StationCode=#{stations[station[0]][0]}&api_key=#{key}")
+                msg.http("http://api.wmata.com/Rail.svc/json/jStationInfo?StationCode=#{stations[station[0]][0]}&api_key=#{key}&subscription_key=#{key}")
                 .get() (err, resp, body) ->
                     results = JSON.parse body
                     arr += "Here are the predictions for #{results.Name}:\n\n"
                     for s in stations[station[0]]
-                        msg.http("http://api.wmata.com/StationPrediction.svc/json/GetPrediction/#{s}?api_key=#{key}")
+                        msg.http("http://api.wmata.com/StationPrediction.svc/json/GetPrediction/#{s}?api_key=#{key}&subscription_key=#{key}")
                         .get() (err, resp, body) ->
                             results = JSON.parse body
                             for i in results.Trains
@@ -244,7 +244,7 @@ module.exports = (robot) ->
 
         # Default to rail delays
         else
-            msg.http("http://api.wmata.com/Incidents.svc/json/Incidents?api_key=#{key}")
+            msg.http("http://api.wmata.com/Incidents.svc/json/Incidents?api_key=#{key}&subscription_key=#{key}")
                 .get() (err, resp, body) ->
                     results = JSON.parse body
                     for i in results.Incidents
