@@ -12,7 +12,7 @@
 #
 # Author:
 #   stvnrlly
-barks = ['bark ', 'bark, bark ', 'bark. Bark ', 'bark bark ', 'bark bark, bark ' 'bark? Bark ']
+barks = ['bark ', 'bark, bark ', 'bark. Bark ', 'bark bark ', 'bark bark, bark ', 'bark? Bark ']
 
 module.exports = (robot) ->
   robot.respond /barkov/i, (msg) ->
