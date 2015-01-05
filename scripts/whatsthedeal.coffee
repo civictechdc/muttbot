@@ -13,7 +13,7 @@
 # Author:
 #   stvnrlly
 module.exports = (robot) ->
-  robot.hear /what's\sthe\sdeal\b/i, (message) ->
+  robot.hear /what('s|\sis)\sthe\sdeal\b/i, (message) ->
     probability = Math.random()
     if probability < 0.95
         message.send "https://i.imgur.com/ozk9WuG.jpg"
