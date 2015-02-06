@@ -23,6 +23,7 @@
   "dependencies": {
     "cheerio": "0.17.0",
     "chess": "0.2.1",
+    "cleverbot-node": "^0.1.8",
     "flip": "0.1.1",
     "htmlparser": "^1.7.7",
     "hubot": ">= 2.6.0 < 3.0.0",
