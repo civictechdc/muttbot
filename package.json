@@ -35,7 +35,6 @@
     "hubot-google-translate": "^0.1.0",
     "hubot-hashme": "^0.1.0",
     "hubot-heroku-keepalive": "0.0.4",
-    "hubot-pokemon": "^0.2.23",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
     "hubot-slack": "^3.2.1",
     "jsdom": "1.0.0-pre.3",
