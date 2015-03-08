@@ -43,7 +43,8 @@
     "simple-twitter": "^1.0.7",
     "soupselect": "^0.2.0",
     "underscore": "^1.7.0",
-    "underscore.string": "^2.3.3"
+    "underscore.string": "^2.3.3",
+    "hubot-poker": "git://github.com/chrismo/hubot-poker.git"
   },
   "engines": {
     "node": ">= 0.8.x",
