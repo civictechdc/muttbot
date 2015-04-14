@@ -32,5 +32,5 @@ rulings = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /objection!/i, (message) ->
+  robot.hear /objection!/i, (msg) ->
     msg.send msg.random rulings
