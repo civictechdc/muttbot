@@ -3,6 +3,7 @@
 #
 # Dependencies:
 #   node-geocoder
+#   fuzzy
 #
 # Configuration:
 #   HUBOT_WMATA_API_KEY
@@ -19,136 +20,107 @@
 #   stvnrlly
 #
 geocoder = require('node-geocoder').getGeocoder('google', 'http', {})
+fuzzy = require('fuzzy')
 
-stations =
-    "metro center": ["a01","c01"],
-    "farragut north": "a02",
-    "dupont": ["a03"],
-    "woodley": "a04",
-    "adams": "a04",
-    "cleveland": "a05",
-    "van ness": "a06",
-    "udc": "a06",
-    "tenleytown": "a07",
-    "au": "a07",
-    "american": "a07",
-    "friendship": "a08",
-    "bethesda": "a09",
-    "medical": "a10",
-    "grosvenor": "a11",
-    "strathmore": "a11"
-    "white": "a12",
-    "twinbrook": "a13",
-    "rockville": "a14",
-    "shady": "a15",
-    "gallery": ["b01","e01","f01"],
-    "chinatown": ["b01","e01","f01"],
-    "judiciary": "b02",
-    "union": "b03",
-    "new york": "b35",
-    "gallaudet": "b35",
-    "rhode": "b04",
-    "brentwood": "b04",
-    "brookland": "b05",
-    "catholic": "b05",
-    "fort": ["b06","e06"],
-    "takoma": "b07",
-    "silver": "b08",
-    "forest": "b09",
-    "wheaton": "b10",
-    "glenmont": "b11",
-    "mcpherson": "c02",
-    "farragut west": "c03",
-    "foggy": "c04",
-    "george": "c04",
-    "gwu": "c04",
-    "rosslyn": "c05",
-    "arlington": "c06",
-    "pentagon": "c07",
-    "pentagon city": "c08",
-    "crystal": "c09",
-    "ronald": "c10",
-    "reagan": "c10",
-    "national": "c10",
-    "braddock": "c12",
-    "king": "c13",
-    "eisenhower": "c14",
-    "huntington": "c15",
-    "federal triangle": "d01",
-    "smithsonian": "d02",
-    "l\'enfant": ["d03","f03"],
-    "federal center": "d04",
-    "capitol south": "d05",
-    "eastern": "d06",
-    "potomac": "d07",
-    "stadium": "d08",
-    "minnesota": "d09",
-    "deanwood": "d10",
-    "cheverly": "d11",
-    "landover": "d12",
-    "new carrolton": "d13",
-    "mt vernon": "e01",
-    "convention": "e01",
-    "shaw": "e02",
-    "howard": "e02",
-    "u st": "e03",
-    "african": "e03",
-    "cardozo": "e03",
-    "columbia": "e04",
-    "georgia": "e05",
-    "petworth": "e05",
-    "west hyattsville": "e07",
-    "prince": "e08",
-    "college park": "e09",
-    "umd": "e09",
-    "greenbelt": "e10",
-    "archives": "f02",
-    "penn": "f02",
-    "waterfront": "f04",
-    "seu": "f04",
-    "navy": "f05",
-    "anacostia": "f06",
-    "congress": "f07",
-    "southern": "f08",
-    "naylor": "f09",
-    "suitland": "f10",
-    "branch": "f11",
-    "benning": "g01",
-    "capitol heights": "g02",
-    "addison": "g03",
-    "seat": "g03",
-    "morgan": "g04",
-    "largo": "g05",
-    "van dorn": "j02",
-    "franconia": "j03",
-    "springfield": "j03",
-    "court": "k01",
-    "clarendon": "k02",
-    "virginia sq": "k03",
-    "george mason": "k03",
-    "gmu": "k03"
-    "ballston": "k04",
-    "marymount": "k04",
-    "mu": "k04",
-    "east falls": "k05",
-    "west falls": "k06",
-    "dunn": "k07",
-    "merrifield": "k07",
-    "vienna": "k08",
-    "fairfax": "k08",
-    "mclean": "n01",
-    "tysons": "n02",
-    "greensboro": "n03",
-    "spring": "n04",
-    "wiehle": "n06",
-    "reston": "n06"
+stations = [
+    {name: "Metro Center", code: ["a01","c01"]},
+    {name: "Farragut North", code: ["a02"]},
+    {name: "Dupont Circle", code: ["a03"]},
+    {name: "Woodley Park–Adams Morgan–Zoo", code: ["a04"]},
+    {name: "Cleveland Park", code: ["a05"]},
+    {name: "Van Ness UDC", code: ["a06"]},
+    {name: "Tenleytown–American University", code: ["a07"]},
+    {name: "Friendship Heights", code: ["a08"]},
+    {name: "Bethesda", code: ["a09"]},
+    {name: "Medical Center", code: ["a10"]},
+    {name: "Grosvenor Strathmore", code: ["a11"]},
+    {name: "White Flint", code: ["a12"]},
+    {name: "Twinbrook", code: ["a13"]},
+    {name: "Rockville", code: ["a14"]},
+    {name: "Shady Grove", code: ["a15"]},
+    {name: "Gallery Place–Chinatown", code: ["b01","e01","f01"]},
+    {name: "Judiciary Square", code: ["b02"]},
+    {name: "Union Station", code: ["b03"]},
+    {name: "New York Avenue–Gallaudet", code: ["b35"]},
+    {name: "Rhode Island Avenue–Brentwood", code: ["b04"]},
+    {name: "Brookland–Catholic CUA", code: ["b05"]},
+    {name: "Fort Totten", code: ["b06","e06"]},
+    {name: "Takoma Park", code: ["b07"]},
+    {name: "Silver Spring", code: ["b08"]},
+    {name: "Forest Glen", code: ["b09"]},
+    {name: "Wheaton", code: ["b10"]},
+    {name: "Glenmont", code: ["b11"]},
+    {name: "McPherson Square", code: ["c02"]},
+    {name: "Farragut West", code: ["c03"]},
+    {name: "Foggy Bottom–George Washington GWU", code: ["c04"]},
+    {name: "Rosslyn", code: ["c05"]},
+    {name: "Arlington Cemetery", code: ["c06"]},
+    {name: "Pentagon", code: ["c07"]},
+    {name: "Pentagon City", code: ["c08"]},
+    {name: "Crystal City", code: ["c09"]},
+    {name: "Ronald Reagan National Airport", code: ["c10"]},
+    {name: "Braddock Road", code: ["c12"]},
+    {name: "King Street–Old Town", code: ["c13"]},
+    {name: "Eisenhower Avenue", code: ["c14"]},
+    {name: "Huntington", code: ["c15"]},
+    {name: "Federal Triangle", code: ["d01"]},
+    {name: "Smithsonian", code: ["d02"]},
+    {name: "L'enfant Plaza", code: ["d03","f03"]},
+    {name: "Federal Center SW", code: ["d04"]},
+    {name: "Capitol South", code: ["d05"]},
+    {name: "Eastern Market", code: ["d06"]},
+    {name: "Potomac Avenue", code: ["d07"]},
+    {name: "Stadium–Armory", code: ["d08"]},
+    {name: "Minnesota Avenue", code: ["d09"]},
+    {name: "Deanwood", code: ["d10"]},
+    {name: "Cheverly", code: ["d11"]},
+    {name: "Landover", code: ["d12"]},
+    {name: "New Carrolton", code: ["d13"]},
+    {name: "Mt. Vernon Square–Convention Center", code: ["e01"]},
+    {name: "Shaw–Howard", code: ["e02"]},
+    {name: "U Street–Cardozo", code: ["e03"]},
+    {name: "Columbia Heights", code: ["e04"]},
+    {name: "Georgia Avenue–Petworth", code: ["e05"]},
+    {name: "West Hyattsville", code: ["e07"]},
+    {name: "Prince George's Plaza", code: ["e08"]},
+    {name: "College Park–University of Maryland UMD", code: ["e09"]},
+    {name: "Greenbelt", code: ["e10"]},
+    {name: "Archives", code: ["f02"]},
+    {name: "Waterfront", code: ["f04"]},
+    {name: "Navy Yard–Ballpark", code: ["f05"]},
+    {name: "Anacostia", code: ["f06"]},
+    {name: "Congress Heights", code: ["f07"]},
+    {name: "Southern Avenue", code: ["f08"]},
+    {name: "Naylor Road", code: ["f09"]},
+    {name: "Suitland", code: ["f10"]},
+    {name: "Branch Avenue", code: ["f11"]},
+    {name: "Benning Road", code: ["g01"]},
+    {name: "Capitol Heights", code: ["g02"]},
+    {name: "Addison Road", code: ["g03"]},
+    {name: "Morgan Boulevard", code: ["g04"]},
+    {name: "Largo Town Center", code: ["g05"]},
+    {name: "Van Dorn Street", code: ["j02"]},
+    {name: "Franconia–Springfield", code: ["j03"]},
+    {name: "Court House", code: ["k01"]},
+    {name: "Clarendon", code: ["k02"]},
+    {name: "Virginia Square–George Mason GMU", code: ["k03"]},
+    {name: "Ballston", code: ["k04"]},
+    {name: "East Falls Church", code: ["k05"]},
+    {name: "West Falls Church", code: ["k06"]},
+    {name: "Dunn Loring", code: ["k07"]},
+    {name: "Vienna", code: ["k08"]},
+    {name: "Mclean", code: ["n01"]},
+    {name: "Tysons Corner", code: ["n02"]},
+    {name: "Greensboro", code: ["n03"]},
+    {name: "Wiehle–Reston East", code: ["n06"]},
+]
 station_regex = "("+Object.keys(stations).join("|")+")"
 station_regex = new RegExp(station_regex.replace(/(\s|-|\\)/g, "\\s"), "i")
 
 module.exports = (robot) ->
 
     robot.respond /(metro|wmata)(\s+(.+))?/i, (msg) ->
-        key = process.env.HUBOT_WMATA_API_KEY
+        key = "xqv42tjfvz4abb9y9averdvd"
         if msg.match[3]
             search = msg.match[3]
             # Bus incident search by route name
@@ -221,26 +193,25 @@ module.exports = (robot) ->
                             msg.send i.Description
                             delay = true
                     if !delay
-                        msg.send "No problems on the #{line[0]} line!"
+                        msg.send "No reported problems on the #{line[0]} line!"
 
             # Train arrivals by station code (one letter and two numbers)
-            else if search.match station_regex
-                station = search.match station_regex
-                arr = ""
-                msg.http("http://api.wmata.com/Rail.svc/json/jStationInfo?StationCode=#{stations[station[0]][0]}&api_key=#{key}&subscription_key=#{key}")
+            else
+                fuzzy_options =
+                    extract: (el) -> el.name
+                fuzzy_search = fuzzy.filter(search, stations, fuzzy_options)
+                station = fuzzy_search[0].string
+                result = stations.filter (o) -> o.name == station
+                arr = "Train times for #{result[0].name}:\n"
+                msg.http("http://api.wmata.com/StationPrediction.svc/json/GetPrediction/#{result[0].code}?api_key=#{key}&subscription_key=#{key}")
                 .get() (err, resp, body) ->
                     results = JSON.parse body
-                    arr += "Here are the predictions for #{results.Name}:\n\n"
-                    for s in stations[station[0]]
-                        msg.http("http://api.wmata.com/StationPrediction.svc/json/GetPrediction/#{s}?api_key=#{key}&subscription_key=#{key}")
-                        .get() (err, resp, body) ->
-                            results = JSON.parse body
-                            for i in results.Trains
-                                arr += "Train to #{i.DestinationName}: #{i.Min} minutes\n"
-                            msg.send arr
+                    for i in results.Trains
+                        arr += "#{i.Line} train to #{i.DestinationName}: #{i.Min} minutes\n"
+                    msg.send arr
 
-            else
-                msg.send "I don't know what that means..."
+            # else
+            #     msg.send "I don't know what that means..."
 
         # Default to rail delays
         else
