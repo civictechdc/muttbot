@@ -33,6 +33,7 @@
     "hubot-at": "0.0.4",
     "hubot-calculator": ">= 0.3.0",
     "hubot-darksky": "^1.0.1",
+    "hubot-google-images": "^0.2.1",
     "hubot-google-translate": "^0.1.0",
     "hubot-hashme": "^0.1.0",
     "hubot-heroku-keepalive": "0.0.4",
