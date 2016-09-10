@@ -21,11 +21,11 @@ module.exports = (robot) ->
 
   robot.respond /rupert( me)?/i, (msg) ->
     time = new Date().getTime()
-    msg.send "http://desktop.occams.info:8081/rupert/snapshot?time=" + time
+    msg.send "https://razor.occams.info/rupert/snapshot?time=" + time
 
   robot.respond /rupert bomb( (\d+))?/i, (msg) ->
     count = msg.match[2] || 5
     for n in count
       time = new Date().getTime()
-      msg.send "http://desktop.occams.info:8081/rupert/snapshot?time=" + time
+      msg.send "https://razor.occams.info/rupert/snapshot?time=" + time
       sleep 5000
